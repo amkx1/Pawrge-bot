@@ -1,4 +1,5 @@
 .env
 __pycache__/
-actions/
+intel/
+*.pyc
 
