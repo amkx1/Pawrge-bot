@@ -67,11 +67,13 @@ class LinuxCommands(commands.Cog):
             return
         
         with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
+            lines = f.readlines()
+            title = lines[0].strip().lstrip("#").strip() if lines else f"Linux {subcommand.capitalize()}"
+            description = "".join(lines[1:]).strip() if len(lines) > 1 else "No content found."
 
         embed = discord.Embed(
-            title=f"Linux {subcommand.capitalize()}",
-            description=content[:4096],
+            title=title,
+            description=description[:4096],
             color=discord.Color.from_str("#D14775")
         )
 
